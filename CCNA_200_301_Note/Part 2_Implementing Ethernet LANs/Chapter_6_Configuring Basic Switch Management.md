@@ -50,6 +50,8 @@ Cisco switches support two other login security methods that both use per-user u
 
 ![image-20230517151849101](images/image-20230517151849101.png)
 
+Earlier, I mentioned that **one useful default was that the switch defaults to support both SSH and Telnet on the vty lines.** However, because Telnet is a security risk, you could disable Telnet to enforce a tighter security policy. (For that matter, you can disable SSH support and allow Telnet on the vty lines as well.)
+
 ![image-20230517151911428](images/image-20230517151911428.png)
 
 ![image-20230517152000254](images/image-20230517152000254.png)
