@@ -37,3 +37,27 @@ Two of the most common commands to display the interfaces, and their status, are
 <img src="images/image-20230531112651351.png" alt="image-20230531112651351" style="zoom:50%;" />
 
 <img src="images/image-20230531112707367.png" alt="image-20230531112707367" style="zoom:50%;" />
+
+**Interface Status Codes**
+
+<img src="images/image-20230531125142614.png" alt="image-20230531125142614" style="zoom:50%;" />
+
+<img src="images/image-20230531125208923.png" alt="image-20230531125208923" style="zoom:50%;" />
+
+**Router Interface IP Addresses**
+
+- Most Cisco router interfaces default to a disabled (**shutdown**) state and should be enabled with the **no shutdown** interface subcommand.
+- Cisco routers do not route IP packets in or out an interface until an IP address and mask have been configured; by default, no interfaces have an IP address and mask.
+- Cisco routers attempt to route IP packets for any interfaces that are in an up/up state and that have an IP address/mask assigned.
+
+<img src="images/image-20230531125651845.png" alt="image-20230531125651845" style="zoom:50%;" />
+
+<img src="images/image-20230531125732206.png" alt="image-20230531125732206" style="zoom:50%;" />
+
+<img src="images/image-20230531125834022.png" alt="image-20230531125834022" style="zoom:50%;" />
+
+## **Command References**
+
+<img src="images/image-20230531130106158.png" alt="image-20230531130106158" style="zoom:50%;" />
+
+<img src="images/image-20230531130122996.png" alt="image-20230531130122996" style="zoom:50%;" />
