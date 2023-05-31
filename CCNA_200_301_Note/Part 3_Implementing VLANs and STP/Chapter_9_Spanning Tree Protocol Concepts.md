@@ -98,3 +98,88 @@ Of course, it helps to know the default cost values so you can then choose alter
 
 ## 4. **Details Specific to STP (and Not RSTP)**
 
+STP performed well for the era and circumstances in which it was created. The “rapid” in RSTP refers to the improvements to how fast RSTP could react when changes occur—so understanding how STP reacts will be useful to understand why RSTP reacts faster. 
+
+### **STP Activity When the Network Remains Stable**
+
+![image-20230530141108246](images/image-20230530141108246.png)
+
+**When a switch fails to receive a Hello, it knows a problem might be occurring in the network.** Each switch relies on these periodically received Hellos from the root as a way to know that its path to the root is still working. When a switch ceases to receive the Hellos, or receives a Hello that lists different details, something has failed, so the switch reacts and starts the process of changing the spanning-tree topology.
+
+### **STP Timers That Manage STP Convergence**
+
+![image-20230530141545087](images/image-20230530141545087.png)
+
+![image-20230530142050235](images/image-20230530142050235.png)
+
+Now that SW3 can act, it begins by reevaluating the choice of root switch. SW3 still receives the Hellos from SW2, as forwarded from the root (SW1). SW1 still has a lower BID than SW3; otherwise, SW1 would not have already been the root. So, SW3 decides that SW1 wins the root election and that SW3 is not the root.
+
+Next, SW3 reevaluates its choice of RP. At this point, SW3 is receiving Hellos on only one interface: Gi0/2. Whatever the calculated root cost, Gi0/2 becomes SW3’s new RP. (The cost would be 8, assuming the STP costs had no changes since Figures 9-5 and 9-6.)
+
+SW3 then reevaluates its role as DP on any other interfaces. In this example, no real work needs to be done. SW3 was already DP on interface Fa0/13, and it continues to be the DP because no other switches connect to that port.
+
+### **Changing Interface States with STP**
+
+Switches using STP can simply move immediately from forwarding to blocking state, but they must take extra time to transition from blocking state to forwarding state. For instance, when switch SW3 in Figure 9-7 formerly used port G0/1 as its RP (a role), that port was in a forwarding state. After convergence, G0/1 might be neither an RP nor DP; the switch can immediately move that port to a blocking state.
+
+However, when a port that formerly blocked needs to transition to forwarding, the switch first puts the port through two intermediate interface states. These temporary STP states help prevent temporary loops:
+
+![image-20230530142738539](images/image-20230530142738539.png)
+
+STP moves an interface from blocking to listening, then to learning, and then to forwarding state. STP leaves the interface in each interim state for a time equal to the forward delay timer, which defaults to 15 seconds. As a result, a convergence event that causes an interface to change from blocking to forwarding requires 30 seconds to transition from blocking to forwarding.
+
+![image-20230530143234619](images/image-20230530143234619.png)
+
+## 5. **Rapid STP Concepts**
+
+### 5.1 **Comparing STP and RSTP**
+
+**Similarities**
+
+![image-20230530143845014](images/image-20230530143845014.png)
+
+**Differences**
+
+STP takes a relatively long time to converge (50 seconds with the default settings when all the wait times must be followed). RSTP improves network convergence when topology changes occur, usually converging within a few seconds (or in slow conditions, in about 10 seconds).
+
+**RSTP changes and adds to STP in ways that avoid waiting on STP timers, resulting in quick transitions from forwarding to discarding (blocking) state and vice versa.** 
+
+![image-20230530144107296](images/image-20230530144107296.png)
+
+![image-20230530144358307](images/image-20230530144358307.png)
+
+### 5.2 **RSTP and the Alternate (Root) Port Role**
+
+To be an alternate port, both the RP and the alternate port must receive Hellos that identify the same root switch. For instance, in Figure 9-8, SW1 is the root. SW3 will receive Hello BPDUs on two ports: G0/1 and G0/2.
+
+**SW3 picks G0/1 as its root port in this case and then makes G0/2 an alternate port.**
+
+<img src="images/image-20230530144737265.png" alt="image-20230530144737265" style="zoom:50%;" />
+
+<img src="images/image-20230530145019941.png" alt="image-20230530145019941" style="zoom:50%;" />
+
+### 5.3 **RSTP States and Processes**
+
+Both STP and RSTP use port states, but with some differences.
+
+1. First, RSTP keeps both the learning and forwarding states as compared with STP, for the same purposes. However, RSTP does not even define a listening state, finding it unnecessary. Finally, RSTP renames the blocking state to the discarding state and redefines its use slightly.
+2. RSTP uses the discarding state for what STP defines as two states: disabled state and blocking state. Blocking should be somewhat obvious by now: the interface can work physically, but STP/RSTP chooses to not forward traffic to avoid loops. STP’s disabled state simply meant that the interface was administratively disabled. RSTP just combines those into a single discarding state.
+
+![image-20230530145446876](images/image-20230530145446876.png)
+
+### 5.4 **RSTP and the Backup (Designated) Port Role**
+
+As a reminder, the RSTP alternate port role creates a way for RSTP to quickly replace a switch’s root port. Similarly, the RSTP backup port role creates a way for RSTP to quickly replace a switch’s designated port on some LAN.
+
+### 5.5 **RSTP Port Types**
+
+<img src="images/image-20230530150321014.png" alt="image-20230530150321014" style="zoom:50%;" />
+
+### 5.6 **Optional STP Features**
+
+ the last few topics introduce a few optional features that make STP work even better or be more secure: 
+
+- **EtherChannel:** EtherChannel provides a way to prevent STP convergence from being needed when only a single port or cable failure occurs.
+- **PortFast**: PortFast allows a switch to immediately transition from blocking to forwarding, bypass-
+   ing listening and learning states.
+- **BPDU Guard**: Security
