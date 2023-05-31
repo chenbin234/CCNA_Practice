@@ -104,3 +104,14 @@ You can configure a static route so that IOS ignores these basic checks, always 
 
 ## 4. **IP Forwarding with the Longest Prefix Match**
 
+**Interpreting the IP Routing Table**
+
+<img src="images/image-20230531145926112.png" alt="image-20230531145926112" style="zoom:50%;" />
+
+<img src="images/image-20230531145943865.png" alt="image-20230531145943865" style="zoom:50%;" />
+
+## **Command References**
+
+<img src="images/image-20230531150208443.png" alt="image-20230531150208443" style="zoom:50%;" />
+
+<img src="images/image-20230531150240950.png" alt="image-20230531150240950" style="zoom:50%;" />
