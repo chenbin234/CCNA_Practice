@@ -145,3 +145,43 @@ As a result of the SPF algorithm’s analysis of the LSDB, R1 adds a route to su
 
 ## 3. **OSPF Areas and LSAs**
 
+OSPF can be used in some networks with very little thought about design issues. You just turn on OSPF in all the routers, put all interfaces into the same area (usually area 0), and it works! Figure 19-12 shows one such network example, with 11 routers and all interfaces in area 0.
+
+<img src="images/image-20230601104359524.png" alt="image-20230601104359524" style="zoom:50%;" />
+
+**The solution is to take the one large LSDB and break it into several smaller LSDBs by using OSPF areas.**
+
+For instance, an internetwork with 1000 routers and 2000 subnets, broken in 100 areas, would average 10 routers and 20 subnets per area. The SPF calculation on a router would have to only process topology about 10 routers and 20 links, rather than 1000 routers and 2000 links.
+
+### 3.1 **OSPF Areas**
+
+![image-20230601104922918](images/image-20230601104922918.png)
+
+<img src="images/image-20230601105125126.png" alt="image-20230601105125126" style="zoom:50%;" />
+
+<img src="images/image-20230601105148242.png" alt="image-20230601105148242" style="zoom:50%;" />
+
+### 3.2 **How Areas Reduce SPF Calculation Time**
+
+SPF spends most of its processing time working through all the topology details, namely routers and the links that connect routers. Areas reduce SPF’s workload because, for a given area, the LSDB lists only routers and links inside that area, as shown on the left side of Figure 19-14.
+
+<img src="images/image-20230601105440734.png" alt="image-20230601105440734" style="zoom:50%;" />
+
+While the LSDB has less topology information, it still has to have information about all subnets in all areas, so that each router can create IPv4 routes for all subnets. So, with an area design, OSPFv2 uses very brief summary information about the subnets in other areas.
+
+### 3.3 **(OSPFv2) Link-State Advertisements**
+
+**Router LSAs Build Most of the Intra-Area Topology**
+
+To see a specific instance, first review Figure 19-15. It lists internetwork topology, with sub- nets listed. Because it’s a small internetwork, the engineer chose a single-area design, with all interfaces in backbone area 0.
+
+With the single-area design planned for this small internetwork, the LSDB will contain four router LSAs. Each router creates a router LSA for itself, with its own RID as the LSA identi- fier. The LSA lists that router’s own interfaces, IP address/mask, with pointers to neighbors.
+
+<img src="images/image-20230601105740844.png" alt="image-20230601105740844" style="zoom:50%;" />
+
+Once all four routers have copies of all four router LSAs, SPF can mathematically analyze the LSAs to create a model. 
+
+**Network LSAs Complete the Intra-Area Topology**
+
+Whereas router LSAs define most of the intra-area topology, network LSAs define the rest. As it turns out, when OSPF elects a DR on some subnet and that DR has at least one neigh- bor, OSPF treats that subnet as another node in its mathematical model of the network. To represent that network, the DR creates and floods a network (Type 2) LSA for that network (subnet).
+
