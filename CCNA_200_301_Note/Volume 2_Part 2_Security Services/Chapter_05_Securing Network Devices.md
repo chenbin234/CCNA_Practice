@@ -46,19 +46,46 @@ When an external user connects to a router or switch using Telnet or SSH, IOS us
 
 <img src="images/image-20230604185301529.png" alt="image-20230604185301529" style="zoom:50%;" />
 
-
-
-
+The **access-class** command refers to the matching logic in **access-list 3**. The keyword **in** refers to Telnet and SSH connections into this router—in other words, people telnetting into this router. As configured, ACL 3 checks the source IP address of packets for incoming Telnet connections.
 
 
 
 ## 2 **Firewalls and Intrusion Prevention Systems**
 
+### 2.1 **Traditional Firewalls**
+
+**Security Zones**
+
+<img src="images/image-20230604193049810.png" alt="image-20230604193049810" style="zoom: 50%;" />
+
+<img src="images/image-20230604193131412.png" alt="image-20230604193131412" style="zoom:50%;" />
+
+demilitarized zone (DMZ)
 
 
 
+### 2.2 **Intrusion Prevention Systems (IPS)**
+
+The IPS first downloads a database of exploit signatures. Each signature defines different header field values found in sequences of packets used by different exploits. Then the IPS can examine packets, compare them to the known exploit signatures, and notice when packets may be part of a known exploit. Once identified, the IPS can log the event, discard packets, or even redirect the packets to another security application for further examination.
+
+<img src="images/image-20230604193408216.png" alt="image-20230604193408216" style="zoom:50%;" />
+
+**Cisco Next-Generation Firewalls**
+
+The following list mentions a few of the features of an NGFW. 
+
+<img src="images/image-20230604193538733.png" alt="image-20230604193538733" style="zoom:50%;" />
+
+<img src="images/image-20230604193554680.png" alt="image-20230604193554680" style="zoom:50%;" />
+
+**Cisco Next-Generation IPS**
+
+<img src="images/image-20230604193715957.png" alt="image-20230604193715957" style="zoom:50%;" />
 
 
 
+## **Command References**
 
+<img src="images/image-20230604193935185.png" alt="image-20230604193935185" style="zoom:50%;" />
 
+<img src="images/image-20230604193957568.png" alt="image-20230604193957568" style="zoom:50%;" />
