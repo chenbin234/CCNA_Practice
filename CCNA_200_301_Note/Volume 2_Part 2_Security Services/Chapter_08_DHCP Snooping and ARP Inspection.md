@@ -122,3 +122,39 @@ To understand how, consider the sequence of a typical client host with regards t
 For any DAI untrusted ports, DAI compares the ARP message’s origin IP and origin MAC address fields to the DHCP Snooping binding table.
 
 <img src="images/image-20230605102641538.png" alt="image-20230605102641538" style="zoom:50%;" />
+
+<img src="images/image-20230605105201076.png" alt="image-20230605105201076" style="zoom:50%;" />
+
+
+
+#### 2.2.1 Configuring ARP Inspection on a Layer 2 Switch
+
+<img src="images/image-20230605105320259.png" alt="image-20230605105320259" style="zoom:50%;" />
+
+<img src="images/image-20230605105332731.png" alt="image-20230605105332731" style="zoom:50%;" />
+
+<img src="images/image-20230605105403536.png" alt="image-20230605105403536" style="zoom:50%;" />
+
+<img src="images/image-20230605105454491.png" alt="image-20230605105454491" style="zoom: 67%;" />
+
+<img src="images/image-20230605105556870.png" alt="image-20230605105556870" style="zoom:50%;" />
+
+#### 2.2.2 Limiting DAI Message Rates
+
+<img src="images/image-20230605105628774.png" alt="image-20230605105628774" style="zoom:50%;" />
+
+![image-20230605105656777](images/image-20230605105656777.png)
+
+**Configuring Optional DAI Message Checks**
+
+<img src="images/image-20230605105743489.png" alt="image-20230605105743489" style="zoom:50%;" />
+
+#### 2.2.3 IP ARP Inspection Configuration Summary
+
+<img src="images/image-20230605105827695.png" alt="image-20230605105827695" style="zoom:50%;" />
+
+## **Command References**
+
+<img src="images/image-20230605105909651.png" alt="image-20230605105909651" style="zoom:50%;" />
+
+<img src="images/image-20230605105925019.png" alt="image-20230605105925019" style="zoom:50%;" />
