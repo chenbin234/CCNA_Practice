@@ -89,10 +89,22 @@ This second of three major sections of the chapter introduces three different SD
 
 **ACI Operating Model with Intent-Based Networking**
 
+![image-20230606214709962](images/image-20230606214709962.png)
 
+**Summary of the SDN Examples**
+
+
+
+![image-20230606214804099](images/image-20230606214804099.png)
 
 
 
 
 
 ## 3. **Comparing Traditional Versus Controller-Based Networks**
+
+The following list summarizes a few of the comparison points for this particular exam topic:
+
+![image-20230606215125675](images/image-20230606215125675.png)
+
+![image-20230606215303806](images/image-20230606215303806.png)
